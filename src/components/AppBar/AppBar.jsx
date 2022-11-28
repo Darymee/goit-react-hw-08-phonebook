@@ -1,57 +1,55 @@
 import { useState } from 'react';
 
-import { TbMenu2, TbHome2, TbUser, TbLogin, TbUserPlus } from 'react-icons/tb';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 
-import {
-  Header,
-  LogoLink,
-  NavMenu,
-  MenuBtn,
-  NavLinks,
-  NavItem,
-} from './AppBar.styled';
+import { TbMenu2, TbHome2, TbUser, TbLogin, TbUserPlus } from 'react-icons/tb';
+import { BsArrowBarLeft } from 'react-icons/bs';
+
+import { NavItem } from 'components/NavItem/NavItem';
+
+import { Header, LogoLink, NavMenu, MenuBtn } from './AppBar.styled';
+
+const navItems = [
+  { href: '/', text: 'Home', icon: TbHome2 },
+  { href: 'register', text: 'Sign Up', icon: TbUserPlus },
+  { href: 'login', text: 'Sign In', icon: TbLogin },
+];
+
+// <NavItem>
+//   <NavLinks to={'/contacts'}>
+//     <TbUser />
+//     {isOpen && <span>Contacts</span>}
+//   </NavLinks>
+// </NavItem>;
 
 export const AppBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setisOpen] = useLocalStorage('sideBarWidth', false);
 
   const toogleBar = () => {
-    return setIsOpen(!isOpen);
+    setisOpen(!isOpen);
+
+    return;
   };
 
   return (
-    <Header>
+    <Header isOpen={isOpen}>
       <div>
-        <LogoLink href="/goit-react-hw-08-phonebook/">Phonebook</LogoLink>
+        <LogoLink href="/">{!isOpen ? 'PB' : 'Phonebook'}</LogoLink>
       </div>
-      <MenuBtn type="button" onClick={toogleBar}>
-        <TbMenu2 />
+      <MenuBtn type="button" onClick={toogleBar} isOpen={isOpen}>
+        {isOpen ? <BsArrowBarLeft /> : <TbMenu2 />}
       </MenuBtn>
       <NavMenu>
         <ul>
-          <NavItem>
-            <NavLinks to={'/'} end>
-              <TbHome2 />
-              {isOpen && <span>Home</span>}
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks to={'/contacts'}>
-              <TbUser />
-              {isOpen && <span>Contacts</span>}
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks to={'/register'}>
-              <TbUserPlus />
-              {isOpen && <span>Sign Up</span>}
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks to={'/login'}>
-              <TbLogin />
-              {isOpen && <span> Sing In</span>}
-            </NavLinks>
-          </NavItem>
+          {navItems.map(({ href, text, icon }) => (
+            <NavItem
+              key={text}
+              href={href}
+              text={text}
+              Icon={icon}
+              isOpen={isOpen}
+            />
+          ))}
         </ul>
       </NavMenu>
     </Header>

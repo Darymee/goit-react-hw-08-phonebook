@@ -4,22 +4,13 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { MdOutlineContactPhone } from 'react-icons/md';
-
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 
-import ContactForm from '../ContactForm/ContactForm';
-import { ContactsList } from '../ContactsList/ContactsList';
-import { Filter } from 'components/Filter/Filter';
-
-import { Message } from 'components/Message/Message';
-
-import { ContactWrap, Title, ContactsTitle } from './App.styled.js';
-
-import { AppBar } from 'components/AppBar/AppBar';
 import { Home } from 'pages/Home';
 import { Layout } from 'components/Layout/Layout';
+import { LogIn } from 'components/LogIn/LogIn';
+import { Register } from 'components/Register/Register';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -38,8 +29,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
 
-          <Route path="register" element={'Register'} />
-          <Route path="login" element={'Login'} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<LogIn />} />
           <Route path="contacts" element={'Contacts'} />
         </Route>
       </Routes>
