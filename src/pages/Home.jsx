@@ -4,12 +4,16 @@ import { Modal } from 'components/Modal/Modal';
 import { Title } from 'components/UI/Title/Title';
 
 import { Wrapper, TitleLink } from './Home.styled';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Message } from 'components/Message/Message';
 
 export const Home = () => {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const toogleModal = () => {
-    return setisOpen(!isOpen);
+    return setIsOpen(!isOpen);
   };
 
   return (
@@ -21,9 +25,12 @@ export const Home = () => {
           }
         />
 
-        <TitleLink onClick={toogleModal}>Try it now</TitleLink>
-
-        {isOpen && <Modal />}
+        {isLoggedIn ? (
+          <Message text={'Welcome back!'} />
+        ) : (
+          <TitleLink onClick={toogleModal}>Try it now</TitleLink>
+        )}
+        {!isLoggedIn && isOpen && <Modal />}
       </Wrapper>
     </div>
   );

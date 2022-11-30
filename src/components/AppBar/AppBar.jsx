@@ -1,19 +1,13 @@
-import { useState } from 'react';
-
 import { useLocalStorage } from 'hooks/useLocalStorage';
 
-import { TbMenu2, TbHome2, TbUser, TbLogin, TbUserPlus } from 'react-icons/tb';
-import { BsArrowBarLeft } from 'react-icons/bs';
+// import { TbMenu2, TbHome2, TbUser, TbLogin, TbUserPlus } from 'react-icons/tb';
 
-import { NavItem } from 'components/NavItem/NavItem';
-
-import { Header, LogoLink, NavMenu, MenuBtn } from './AppBar.styled';
-
-const navItems = [
-  { href: '/', text: 'Home', icon: TbHome2 },
-  { href: 'register', text: 'Sign Up', icon: TbUserPlus },
-  { href: 'login', text: 'Sign In', icon: TbLogin },
-];
+import { Header } from './AppBar.styled';
+import { Navigation } from 'components/Navigation/Navigation';
+import { AuthNav } from 'components/AuthNav/AuthNav';
+import { UserMenu } from 'components/UserMenu/UserMenu';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 // <NavItem>
 //   <NavLinks to={'/contacts'}>
@@ -23,6 +17,7 @@ const navItems = [
 // </NavItem>;
 
 export const AppBar = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isOpen, setisOpen] = useLocalStorage('sideBarWidth', false);
 
   const toogleBar = () => {
@@ -33,25 +28,8 @@ export const AppBar = () => {
 
   return (
     <Header isOpen={isOpen}>
-      <div>
-        <LogoLink href="/">{!isOpen ? 'PB' : 'Phonebook'}</LogoLink>
-      </div>
-      <MenuBtn type="button" onClick={toogleBar} isOpen={isOpen}>
-        {isOpen ? <BsArrowBarLeft /> : <TbMenu2 />}
-      </MenuBtn>
-      <NavMenu>
-        <ul>
-          {navItems.map(({ href, text, icon }) => (
-            <NavItem
-              key={text}
-              href={href}
-              text={text}
-              Icon={icon}
-              isOpen={isOpen}
-            />
-          ))}
-        </ul>
-      </NavMenu>
+      <Navigation isOpen={isOpen} toogleBar={toogleBar} />
+      {isLoggedIn ? <UserMenu /> : <AuthNav isOpen={isOpen} />}
     </Header>
   );
 };

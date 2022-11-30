@@ -79,11 +79,11 @@ export const Input = styled.input`
 
 export const Label = styled.label`
   position: absolute;
-  top: 12px;
+  top: 15px;
   left: 45px;
 
   font-weight: 700;
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 export const Button = styled.button`

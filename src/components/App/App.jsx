@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { fetchCurrentUser } from 'redux/auth/operations';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 
@@ -15,12 +16,16 @@ import { Register } from 'components/Register/Register';
 export default function App() {
   const dispatch = useDispatch();
 
-  const items = useSelector(selectContacts);
-  const error = useSelector(selectError);
-  const isLoading = useSelector(selectIsLoading);
+  // const items = useSelector(selectContacts);
+  // const error = useSelector(selectError);
+  // const isLoading = useSelector(selectIsLoading);
+
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (
