@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchCurrentUser } from 'redux/auth/operations';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 

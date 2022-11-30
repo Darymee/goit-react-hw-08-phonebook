@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { register } from 'redux/auth/operations';
+import { register } from 'redux/auth/authOperations';
 
 import { BiUser } from 'react-icons/bi';
 import { VscKey, VscMail } from 'react-icons/vsc';
@@ -18,7 +18,7 @@ import {
   InputWrapp,
   Button,
 } from './Register.styled';
-import { selectUser } from 'redux/auth/selectors';
+import { selectUser } from 'redux/auth/authSelectors';
 
 export const Register = () => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { Title } from 'components/UI/Title/Title';
 
 import { Wrapper, TitleLink } from './Home.styled';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { Message } from 'components/Message/Message';
 
 export const Home = () => {

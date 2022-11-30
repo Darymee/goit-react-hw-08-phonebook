@@ -4,8 +4,8 @@ import { Avatar } from '@chakra-ui/react';
 
 import { AiOutlineUser } from 'react-icons/ai';
 
-import { logOut } from 'redux/auth/operations';
-import { selectUsername } from 'redux/auth/selectors';
+import { logOut } from 'redux/auth/authOperations';
+import { selectUsername } from 'redux/auth/authSelectors';
 
 import { UserProfile } from './UserMenu.styled';
 
