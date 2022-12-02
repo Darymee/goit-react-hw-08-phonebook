@@ -1,24 +1,40 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Avatar } from '@chakra-ui/react';
-
-import { AiOutlineUser } from 'react-icons/ai';
+import { TbLogout, TbUserCircle } from 'react-icons/tb';
 
 import { logOut } from 'redux/auth/authOperations';
 import { selectUsername } from 'redux/auth/authSelectors';
 
-import { UserProfile } from './UserMenu.styled';
+import {
+  UserProfile,
+  CustomAvatar,
+  WelcomeText,
+  UserName,
+  BtnLogOut,
+} from './UserMenu.styled';
 
-export const UserMenu = () => {
+export const UserMenu = ({ isOpen }) => {
   const dispatch = useDispatch();
   const name = useSelector(selectUsername);
   return (
-    <UserProfile>
-      <Avatar bg="red.500" icon={<AiOutlineUser fontSize="1.5rem" />} />
-      <p>{name}</p>
-      <button type="button" onClick={() => dispatch(logOut())}>
-        Logout
-      </button>
+    <UserProfile isOpen={isOpen}>
+      <CustomAvatar
+        // isOpen={isOpen}
+        sx={{ bgcolor: 'rgba(0, 0, 0, 0.6)', width: 45, height: 45 }}
+      >
+        <TbUserCircle />
+      </CustomAvatar>
+
+      <WelcomeText isOpen={isOpen}>
+        Welcome, <UserName>{name}</UserName>
+      </WelcomeText>
+      <BtnLogOut
+        type="button"
+        isOpen={isOpen}
+        onClick={() => dispatch(logOut())}
+      >
+        <TbLogout />
+      </BtnLogOut>
     </UserProfile>
   );
 };

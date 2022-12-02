@@ -4,8 +4,8 @@ import { persistStore } from 'redux-persist';
 
 import { authPersistedReducer, ignoreActions } from './persistConfig';
 
-import { contactsReducer } from './slices/contactsSlice';
-import { filterReducer } from './slices/filtersSlice';
+import { contactsReducer } from './contacts/slices/contactsSlice';
+import { filterReducer } from './contacts/slices/filtersSlice';
 
 export const store = configureStore({
   reducer: {

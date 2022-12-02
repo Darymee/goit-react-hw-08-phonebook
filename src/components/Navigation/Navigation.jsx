@@ -1,11 +1,14 @@
 import { BsArrowBarLeft } from 'react-icons/bs';
-import { TbMenu2, TbHome2 } from 'react-icons/tb';
+import { TbMenu2, TbHome2, TbAddressBook } from 'react-icons/tb';
 
 import { NavItem } from 'components/NavItem/NavItem';
 
 import { LogoLink, MenuBtn } from './Navigation.styled';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 export const Navigation = ({ isOpen, toogleBar }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <>
       <div>
@@ -14,7 +17,17 @@ export const Navigation = ({ isOpen, toogleBar }) => {
       <MenuBtn type="button" onClick={toogleBar} isOpen={isOpen}>
         {isOpen ? <BsArrowBarLeft /> : <TbMenu2 />}
       </MenuBtn>
-      <NavItem href={'/'} text={'Home'} Icon={TbHome2} isOpen={isOpen} />
+      <ul>
+        <NavItem href={'/'} text={'Home'} Icon={TbHome2} isOpen={isOpen} />
+        {isLoggedIn && (
+          <NavItem
+            href={'/contacts'}
+            text={'Contacts'}
+            Icon={TbAddressBook}
+            isOpen={isOpen}
+          />
+        )}
+      </ul>
     </>
   );
 };

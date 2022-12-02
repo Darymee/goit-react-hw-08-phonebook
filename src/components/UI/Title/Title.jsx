@@ -1,3 +1,7 @@
 import { MainTitle } from './Title.styled';
 
-export const Title = ({ text }) => <MainTitle>{text}</MainTitle>;
+export const Title = ({ text, size, mb }) => (
+  <MainTitle size={size} mb={mb}>
+    {text}
+  </MainTitle>
+);

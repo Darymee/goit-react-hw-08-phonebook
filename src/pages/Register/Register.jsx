@@ -8,16 +8,11 @@ import { BiUser } from 'react-icons/bi';
 import { VscKey, VscMail } from 'react-icons/vsc';
 
 import { Title } from 'components/UI/Title/Title';
-// import { Message } from 'components/Message/Message';
+import { Button } from 'components/UI/Button/Button';
+import { Wrapper } from 'components/UI/Wrapper/Wrapper';
 
-import {
-  Wrapper,
-  Form,
-  Label,
-  Input,
-  InputWrapp,
-  Button,
-} from './Register.styled';
+import { Form, Label, Input, InputWrapp } from './Register.styled';
+
 import { selectUser } from 'redux/auth/authSelectors';
 
 export const Register = () => {
@@ -50,8 +45,8 @@ export const Register = () => {
   };
 
   return (
-    <Wrapper>
-      <Title text={'Registration form'} />
+    <Wrapper width={'380px'} heigth={'400px'}>
+      <Title text={'Registration form'} size={'25px'} mb={'30px'} />
       <Form onSubmit={handleSubmit}>
         <InputWrapp>
           <Input
@@ -86,7 +81,7 @@ export const Register = () => {
           <Label>Password</Label>
           <VscKey />
         </InputWrapp>
-        <Button type="submit">Create account</Button>
+        <Button type="submit" text={'Create account'} />
         {/* <Message text={'Check your email or password'} /> */}
       </Form>
     </Wrapper>

@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
-export const ContactsUl = styled.ul`
-  margin-top: 30px;
+export const TableHead = styled.th`
+  color: white;
+  font-size: 20px;
+  text-align: left;
+  padding-bottom: 15px;
 `;

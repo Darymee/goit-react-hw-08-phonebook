@@ -1,16 +1,15 @@
-import { ButtonList, ButtonItem, ModalBtn } from './Modal.styled';
+import { ModalLink } from 'components/UI/ModalLink/ModalLink';
+import { ButtonList, ButtonItem } from './Modal.styled';
 
 export const Modal = () => {
   return (
-    <div>
-      <ButtonList>
-        <ButtonItem>
-          <ModalBtn to={'login'}>Sing In</ModalBtn>
-        </ButtonItem>
-        <ButtonItem>
-          <ModalBtn to={'register'}>Sing Up</ModalBtn>
-        </ButtonItem>
-      </ButtonList>
-    </div>
+    <ButtonList>
+      <ButtonItem>
+        <ModalLink to={'/register'} text={'Sing Up'} />
+      </ButtonItem>
+      <ButtonItem>
+        <ModalLink to={'/login'} text={'Sing In'} />
+      </ButtonItem>
+    </ButtonList>
   );
 };

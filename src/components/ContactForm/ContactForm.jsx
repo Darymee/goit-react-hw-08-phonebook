@@ -1,67 +1,89 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
-import { ImPhone, ImUser } from 'react-icons/im';
+import { TbUserPlus } from 'react-icons/tb';
 
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/contactsOperations';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
+
+import { Button } from 'components/UI/Button/Button';
+import { Title } from 'components/UI/Title/Title';
 
 import {
   FormWrap,
   Form,
   InputWrap,
-  Label,
   Input,
-  ButtonSubmit,
+  NumberInput,
 } from './ContactForm.styled';
 
 export default function ContactForm() {
-  const contacts = useSelector(selectContacts);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
     event.preventDefault();
-    const form = event.target;
-    const { name, number } = form.elements;
 
     for (const contact of contacts) {
-      if (contact.name.toLowerCase() === name.value.toLowerCase()) {
-        alert(`${name.value} is already in contacts`);
+      if (contact.name.toLowerCase() === name.toLowerCase()) {
+        alert(`${name} is already in contacts`);
         return;
       }
     }
+    console.log({ name, number });
+    dispatch(addContact({ name, number }));
 
-    dispatch(addContact({ name: name.value, phone: number.value }));
+    reset();
+  };
 
-    form.reset();
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
   return (
     <FormWrap>
+      <Title text={'Create new contact'} size={'25px'} mb={'20px'} />
       <Form onSubmit={handleSubmit}>
         <InputWrap>
-          <Label>Name</Label>
-          <ImUser />
+          <TbUserPlus />
           <Input
+            placeholder="Enter contact name"
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            onChange={e => {
+              setName(e.currentTarget.value);
+            }}
+            value={name}
             required
           />
         </InputWrap>
-        <InputWrap>
-          <Label>Number</Label>
-          <ImPhone />
-          <Input
-            type="text"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </InputWrap>
-        <ButtonSubmit type="submit">Add contact</ButtonSubmit>
+
+        <NumberInput
+          defaultCountry="UA"
+          onChange={value => {
+            if (!value) {
+              return;
+            }
+            console.log(value);
+            setNumber(value);
+          }}
+          region="Europe"
+          title="Number"
+          type="tel"
+          name="number"
+          international
+          maxLength="16"
+          value={number}
+          required
+        />
+
+        <Button type="submit" text={'Add contact'} />
       </Form>
     </FormWrap>
   );

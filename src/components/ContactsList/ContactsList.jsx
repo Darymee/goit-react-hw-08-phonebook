@@ -1,19 +1,48 @@
 import { useSelector } from 'react-redux';
 
-import { selectFilteredContact } from 'redux/selectors';
+import {
+  selectContacts,
+  selectFilteredContact,
+} from 'redux/contacts/contactsSelectors';
 
-import { ContactsListItem } from '../ContactsListItem/ContactsListItem';
+import { ContactListItem } from 'components/ContactListItem/ContactListItem.jsx';
 
-import { ContactsUl } from './ContactsList.styled.js';
+import { Wrapper } from 'components/UI/Wrapper/Wrapper.jsx';
+import { Message } from 'components/UI/Message/Message.jsx';
+import { Title } from 'components/UI/Title/Title.jsx';
+
+import { TableHead } from './ContactsList.styled.js';
 
 export const ContactsList = () => {
+  const contacts = useSelector(selectContacts);
   const filteredContacts = useSelector(selectFilteredContact);
+  console.log(filteredContacts);
 
   return (
-    <ContactsUl>
-      {filteredContacts.map(({ id, name, phone }) => (
-        <ContactsListItem key={id} name={name} phone={phone} id={id} />
-      ))}
-    </ContactsUl>
+    <Wrapper mr={'30px auto'} pd={'20px'}>
+      {contacts.length > 0 ? (
+        <>
+          <Title text={'Contacts list'} size={'25px'} mb={'20px'} />
+          <table>
+            <thead>
+              <tr>
+                <TableHead></TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Number</TableHead>
+                <TableHead>Edit</TableHead>
+                <TableHead>Remove</TableHead>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredContacts.map(({ id, name, number }) => (
+                <ContactListItem key={id} id={id} name={name} number={number} />
+              ))}
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <Message text={'No contacts yet. Add your first contact'} />
+      )}
+    </Wrapper>
   );
 };
