@@ -19,9 +19,6 @@ export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   const dispatch = useDispatch();
-  // const items = useSelector(selectContacts);
-  // const error = useSelector(selectError);
-  // const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());

@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
 
+import CircularProgress from '@mui/material/CircularProgress';
 import {
   selectContacts,
   selectFilteredContact,
+  selectIsLoading,
 } from 'redux/contacts/contactsSelectors';
 
 import { ContactListItem } from 'components/ContactListItem/ContactListItem.jsx';
@@ -16,10 +18,11 @@ import { TableHead } from './ContactsList.styled.js';
 export const ContactsList = () => {
   const contacts = useSelector(selectContacts);
   const filteredContacts = useSelector(selectFilteredContact);
-  console.log(filteredContacts);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <Wrapper mr={'30px auto'} pd={'20px'}>
+      {isLoading && <CircularProgress color="grey" />}
       {contacts.length > 0 ? (
         <>
           <Title text={'Contacts list'} size={'25px'} mb={'20px'} />

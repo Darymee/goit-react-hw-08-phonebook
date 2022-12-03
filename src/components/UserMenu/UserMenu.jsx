@@ -15,11 +15,12 @@ import {
 
 export const UserMenu = ({ isOpen }) => {
   const dispatch = useDispatch();
+
   const name = useSelector(selectUsername);
+
   return (
     <UserProfile isOpen={isOpen}>
       <CustomAvatar
-        // isOpen={isOpen}
         sx={{ bgcolor: 'rgba(0, 0, 0, 0.6)', width: 45, height: 45 }}
       >
         <TbUserCircle />

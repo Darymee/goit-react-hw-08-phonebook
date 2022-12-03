@@ -27,11 +27,14 @@ export const InputWrap = styled.div`
   align-items: center;
   & > svg {
     margin-right: 18px;
+
     width: 28px;
     height: 28px;
 
     top: 50%;
     left: 7px;
+
+    color: white;
   }
 `;
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { register } from 'redux/auth/authOperations';
 
@@ -13,14 +13,11 @@ import { Wrapper } from 'components/UI/Wrapper/Wrapper';
 
 import { Form, Label, Input, InputWrapp } from './Register.styled';
 
-import { selectUser } from 'redux/auth/authSelectors';
-
 export const Register = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const asd = useSelector(selectUser);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -37,11 +34,7 @@ export const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(asd);
     dispatch(register({ name, email, password }));
-    // setName('');
-    // setEmail('');
-    // setPassword('');
   };
 
   return (
@@ -82,7 +75,6 @@ export const Register = () => {
           <VscKey />
         </InputWrapp>
         <Button type="submit" text={'Create account'} />
-        {/* <Message text={'Check your email or password'} /> */}
       </Form>
     </Wrapper>
   );
