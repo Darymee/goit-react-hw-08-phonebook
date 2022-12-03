@@ -12,7 +12,9 @@ export const Navigation = ({ isOpen, toogleBar }) => {
   return (
     <>
       <div>
-        <LogoLink href="/">{!isOpen ? 'PB' : 'Phonebook'}</LogoLink>
+        <LogoLink href="/goit-react-hw-08-phonebook">
+          {!isOpen ? 'PB' : 'Phonebook'}
+        </LogoLink>
       </div>
       <MenuBtn type="button" onClick={toogleBar} isOpen={isOpen}>
         {isOpen ? <BsArrowBarLeft /> : <TbMenu2 />}
