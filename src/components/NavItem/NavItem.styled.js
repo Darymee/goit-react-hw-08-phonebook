@@ -6,7 +6,6 @@ export const NavLi = styled.li`
   margin-top: 20px;
 
   & svg {
-    /* fill: #fff; */
     stroke: #fff;
 
     margin: ${p => {

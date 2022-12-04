@@ -1,8 +1,11 @@
+import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
+
 import { TbCheck, TbUserSearch } from 'react-icons/tb';
 import { MdOutlineClose } from 'react-icons/md';
 
@@ -103,4 +106,10 @@ export const ModalEdit = ({ onClose, toggle, info }) => {
       )}
     </>
   );
+};
+
+ModalEdit.propTypes = {
+  toggle: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  info: PropTypes.objectOf(PropTypes.string).isRequired,
 };

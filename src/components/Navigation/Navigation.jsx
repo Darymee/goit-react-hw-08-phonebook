@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useSelector } from 'react-redux';
 
 import { BsArrowBarLeft } from 'react-icons/bs';
@@ -9,7 +11,7 @@ import { NavItem } from 'components/NavItem/NavItem';
 
 import { LogoLink, MenuBtn } from './Navigation.styled';
 
-export const Navigation = ({ isOpen, toogleBar }) => {
+export const Navigation = ({ isOpen, toggleBar }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <>
@@ -18,7 +20,7 @@ export const Navigation = ({ isOpen, toogleBar }) => {
           {!isOpen ? 'PB' : 'Phonebook'}
         </LogoLink>
       </div>
-      <MenuBtn type="button" onClick={toogleBar} isOpen={isOpen}>
+      <MenuBtn type="button" onClick={toggleBar} isOpen={isOpen}>
         {isOpen ? <BsArrowBarLeft /> : <TbMenu2 />}
       </MenuBtn>
       <ul>
@@ -34,4 +36,9 @@ export const Navigation = ({ isOpen, toogleBar }) => {
       </ul>
     </>
   );
+};
+
+Navigation.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggleBar: PropTypes.func.isRequired,
 };

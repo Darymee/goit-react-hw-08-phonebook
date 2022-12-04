@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 import { TbUserPlus } from 'react-icons/tb';
 
 import { addContact } from 'redux/contacts/contactsOperations';
@@ -18,7 +19,7 @@ import {
   NumberInput,
 } from './ContactForm.styled';
 
-export default function ContactForm() {
+export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -30,8 +31,11 @@ export default function ContactForm() {
 
     for (const contact of contacts) {
       if (contact.name.toLowerCase() === name.toLowerCase()) {
-        alert(`${name} is already in contacts`);
-        return;
+        toast.warning(`${name} is already in contacts`, {
+          position: toast.POSITION.TOP_RIGHT,
+          theme: 'colored',
+          pauseOnHover: true,
+        });
       }
     }
     dispatch(addContact({ name, number }));
@@ -92,4 +96,4 @@ export default function ContactForm() {
       </motion.div>
     </FormWrap>
   );
-}
+};

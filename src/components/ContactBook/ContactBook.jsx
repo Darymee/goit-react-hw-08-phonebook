@@ -7,12 +7,9 @@ import {
 } from 'redux/contacts/contactsSelectors';
 
 import { Loader } from 'components/Loader';
-
-import { ModalEdit } from 'components/ModalEdit/ModalEdit.jsx';
-
-import { Message } from 'components/UI/Message/Message.jsx';
-
 import { ContactsList } from 'components/ContactsList/ContactsList.jsx';
+import { ModalEdit } from 'components/ModalEdit/ModalEdit.jsx';
+import { Message } from 'components/UI/Message/Message.jsx';
 
 export const ContactBook = () => {
   const [isOpen, setIsOpen] = useState(false);

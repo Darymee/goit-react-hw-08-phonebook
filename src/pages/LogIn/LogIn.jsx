@@ -60,11 +60,21 @@ const LogIn = () => {
               name="password"
               required
               onChange={handleChange}
+              minLength={3}
             />
             <Label>Password</Label>
             <VscKey />
           </InputWrapp>
-          <Button type="submit" text={'Sing In'} />
+          {email && password && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7 }}
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Button type="submit" text={'Sign in'} />
+            </motion.div>
+          )}
         </Form>
       </Wrapper>
     </motion.div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 
 import { register } from 'redux/auth/authOperations';
 
@@ -35,6 +36,16 @@ const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (password.length < 7) {
+      toast.warning(`Password must contain at least 6 characters !`, {
+        position: toast.POSITION.TOP_RIGHT,
+        theme: 'colored',
+        pauseOnHover: true,
+      });
+      return;
+    }
+
     dispatch(register({ name, email, password }));
   };
 
@@ -54,6 +65,8 @@ const Register = () => {
               value={name}
               onChange={handleChange}
               required
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Your name may contain more than 3 characters"
             />
             <Label>Name</Label>
             <BiUser />
@@ -64,6 +77,7 @@ const Register = () => {
               name="email"
               value={email}
               onChange={handleChange}
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required
             />
             <Label>Email</Label>
@@ -80,7 +94,17 @@ const Register = () => {
             <Label>Password</Label>
             <VscKey />
           </InputWrapp>
-          <Button type="submit" text={'Create account'} />
+
+          {name && email && password && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7 }}
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Button type="submit" text={'Create account'} />
+            </motion.div>
+          )}
         </Form>
       </Wrapper>
     </motion.div>

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useSelector } from 'react-redux';
 
 import { motion } from 'framer-motion';
@@ -5,13 +7,12 @@ import { motion } from 'framer-motion';
 import { selectFilteredContact } from 'redux/contacts/contactsSelectors';
 
 import { ContactListItem } from 'components/ContactListItem/ContactListItem.jsx';
-
+import { Filter } from 'components/Filter/Filter.jsx';
 import { Title } from 'components/UI/Title/Title.jsx';
 import { Wrapper } from 'components/UI/Wrapper/Wrapper.jsx';
+import { Message } from 'components/UI/Message/Message.jsx';
 
 import { Table, TableHead } from './ContactsList.styled.js';
-import { Filter } from 'components/Filter/Filter.jsx';
-import { Message } from 'components/UI/Message/Message.jsx';
 
 export const ContactsList = ({ toggleModal, getInfo }) => {
   const filteredContacts = useSelector(selectFilteredContact);
@@ -55,4 +56,8 @@ export const ContactsList = ({ toggleModal, getInfo }) => {
       </motion.div>
     </Wrapper>
   );
+};
+ContactsList.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+  getInfo: PropTypes.func.isRequired,
 };

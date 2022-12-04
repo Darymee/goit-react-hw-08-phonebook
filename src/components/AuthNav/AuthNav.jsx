@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { TbUserPlus, TbLogin } from 'react-icons/tb';
 
 import { NavItem } from 'components/NavItem/NavItem';
@@ -25,4 +27,8 @@ export const AuthNav = ({ isOpen }) => {
       </ul>
     </NavMenu>
   );
+};
+
+AuthNav.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
 };

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { TbLogout, TbUserCircle } from 'react-icons/tb';
@@ -38,4 +40,8 @@ export const UserMenu = ({ isOpen }) => {
       </BtnLogOut>
     </UserProfile>
   );
+};
+
+UserMenu.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
 };
