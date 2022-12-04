@@ -1,32 +1,34 @@
 import { useSelector } from 'react-redux';
 
-import CircularProgress from '@mui/material/CircularProgress';
-import {
-  selectContacts,
-  selectFilteredContact,
-  selectIsLoading,
-} from 'redux/contacts/contactsSelectors';
+import { motion } from 'framer-motion';
+
+import { selectFilteredContact } from 'redux/contacts/contactsSelectors';
 
 import { ContactListItem } from 'components/ContactListItem/ContactListItem.jsx';
 
-import { Wrapper } from 'components/UI/Wrapper/Wrapper.jsx';
-import { Message } from 'components/UI/Message/Message.jsx';
 import { Title } from 'components/UI/Title/Title.jsx';
+import { Wrapper } from 'components/UI/Wrapper/Wrapper.jsx';
 
-import { TableHead } from './ContactsList.styled.js';
+import { Table, TableHead } from './ContactsList.styled.js';
+import { Filter } from 'components/Filter/Filter.jsx';
+import { Message } from 'components/UI/Message/Message.jsx';
 
-export const ContactsList = () => {
-  const contacts = useSelector(selectContacts);
+export const ContactsList = ({ toggleModal, getInfo }) => {
   const filteredContacts = useSelector(selectFilteredContact);
-  const isLoading = useSelector(selectIsLoading);
 
   return (
-    <Wrapper mr={'30px auto'} pd={'20px'}>
-      {isLoading && <CircularProgress color="grey" />}
-      {contacts.length > 0 ? (
-        <>
-          <Title text={'Contacts list'} size={'25px'} mb={'20px'} />
-          <table>
+    <Wrapper mr={'40px auto'} pd={'20px'} minw={'480px'}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7 }}
+      >
+        <Title text={'Contacts list'} size={'25px'} mb={'20px'} />
+        <Filter />
+        {!filteredContacts.length ? (
+          <Message text={'No results'} />
+        ) : (
+          <Table>
             <thead>
               <tr>
                 <TableHead></TableHead>
@@ -38,14 +40,19 @@ export const ContactsList = () => {
             </thead>
             <tbody>
               {filteredContacts.map(({ id, name, number }) => (
-                <ContactListItem key={id} id={id} name={name} number={number} />
+                <ContactListItem
+                  key={id}
+                  id={id}
+                  name={name}
+                  number={number}
+                  toggleModal={toggleModal}
+                  getInfo={getInfo}
+                />
               ))}
             </tbody>
-          </table>
-        </>
-      ) : (
-        <Message text={'No contacts yet. Add your first contact'} />
-      )}
+          </Table>
+        )}
+      </motion.div>
     </Wrapper>
   );
 };

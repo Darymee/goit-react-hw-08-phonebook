@@ -6,10 +6,15 @@ import { deleteContact } from 'redux/contacts/contactsOperations';
 
 import { TableCell, BtnTool } from './ContactListItem.styled';
 
-export const ContactListItem = ({ name, number, id }) => {
+export const ContactListItem = ({ name, number, id, toggleModal, getInfo }) => {
   const dispatch = useDispatch();
-
   const onDelete = () => dispatch(deleteContact(id));
+
+  const sendInfo = () => {
+    const contact = { id, name, number };
+    toggleModal();
+    getInfo(contact);
+  };
 
   return (
     <tr>
@@ -19,7 +24,7 @@ export const ContactListItem = ({ name, number, id }) => {
       <TableCell>{name}</TableCell>
       <TableCell>{number}</TableCell>
       <TableCell>
-        <BtnTool type="button">
+        <BtnTool type="button" onClick={sendInfo}>
           <TbPencil />
         </BtnTool>
       </TableCell>

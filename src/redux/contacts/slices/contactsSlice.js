@@ -4,6 +4,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
+  editContact,
 } from '../contactsOperations';
 
 const contactsSlice = createSlice({
@@ -17,41 +18,57 @@ const contactsSlice = createSlice({
     [fetchContacts.pending](state) {
       state.isLoading = true;
     },
-    [fetchContacts.fulfilled](state, action) {
+    [fetchContacts.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
-      state.items = action.payload;
+      state.items = payload;
     },
-    [fetchContacts.rejected](state, action) {
+    [fetchContacts.rejected](state, { payload }) {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     },
     [addContact.pending](state) {
       state.isLoading = true;
     },
-    [addContact.fulfilled](state, action) {
+    [addContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
-      state.items.push(action.payload);
+      state.items.push(payload);
     },
-    [addContact.rejected](state, action) {
+    [addContact.rejected](state, { payload }) {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     },
     [deleteContact.pending](state) {
       state.isLoading = true;
     },
-    [deleteContact.fulfilled](state, action) {
+    [deleteContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.error = null;
-      const index = state.items.findIndex(
-        contact => contact.id === action.payload.id
-      );
+      const index = state.items.findIndex(contact => contact.id === payload.id);
       state.items.splice(index, 1);
     },
-    [deleteContact.rejected](state, action) {
+    [deleteContact.rejected](state, { payload }) {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
+    },
+    [editContact.pending](state) {
+      state.isLoading = true;
+    },
+    [editContact.fulfilled](state, { payload }) {
+      state.isLoading = false;
+      state.error = null;
+      for (const contact of state.items) {
+        if (contact.id === payload.id) {
+          contact.name = payload.name;
+          contact.number = payload.number;
+          break;
+        }
+      }
+    },
+    [editContact.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });

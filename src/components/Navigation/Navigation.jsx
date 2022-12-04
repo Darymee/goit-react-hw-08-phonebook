@@ -1,11 +1,13 @@
+import { useSelector } from 'react-redux';
+
 import { BsArrowBarLeft } from 'react-icons/bs';
 import { TbMenu2, TbHome2, TbAddressBook } from 'react-icons/tb';
+
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 import { NavItem } from 'components/NavItem/NavItem';
 
 import { LogoLink, MenuBtn } from './Navigation.styled';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 export const Navigation = ({ isOpen, toogleBar }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

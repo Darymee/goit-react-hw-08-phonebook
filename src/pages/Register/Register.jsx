@@ -1,6 +1,7 @@
 import { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
+
+import { motion } from 'framer-motion';
 
 import { register } from 'redux/auth/authOperations';
 
@@ -13,7 +14,7 @@ import { Wrapper } from 'components/UI/Wrapper/Wrapper';
 
 import { Form, Label, Input, InputWrapp } from './Register.styled';
 
-export const Register = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -38,44 +39,52 @@ export const Register = () => {
   };
 
   return (
-    <Wrapper width={'380px'} heigth={'400px'}>
-      <Title text={'Registration form'} size={'25px'} mb={'30px'} />
-      <Form onSubmit={handleSubmit}>
-        <InputWrapp>
-          <Input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            required
-          />
-          <Label>Name</Label>
-          <BiUser />
-        </InputWrapp>
-        <InputWrapp>
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            required
-          />
-          <Label>Email</Label>
-          <VscMail />
-        </InputWrapp>
-        <InputWrapp>
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            required
-          />
-          <Label>Password</Label>
-          <VscKey />
-        </InputWrapp>
-        <Button type="submit" text={'Create account'} />
-      </Form>
-    </Wrapper>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7 }}
+    >
+      <Wrapper width={'380px'} heigth={'400px'}>
+        <Title text={'Registration form'} size={'25px'} mb={'30px'} />
+        <Form onSubmit={handleSubmit}>
+          <InputWrapp>
+            <Input
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              required
+            />
+            <Label>Name</Label>
+            <BiUser />
+          </InputWrapp>
+          <InputWrapp>
+            <Input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              required
+            />
+            <Label>Email</Label>
+            <VscMail />
+          </InputWrapp>
+          <InputWrapp>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              required
+            />
+            <Label>Password</Label>
+            <VscKey />
+          </InputWrapp>
+          <Button type="submit" text={'Create account'} />
+        </Form>
+      </Wrapper>
+    </motion.div>
   );
 };
+
+export default Register;

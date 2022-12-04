@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+import { toast } from 'react-toastify';
+
+import axios from 'axios';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
@@ -20,7 +21,11 @@ export const addContact = createAsyncThunk(
   async ({ name, number }, thunkAPI) => {
     try {
       const response = await axios.post('/contacts', { name, number });
-      console.log(response);
+      toast.info(`New contact added!`, {
+        position: toast.POSITION.TOP_RIGHT,
+        theme: 'colored',
+        pauseOnHover: true,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -32,6 +37,31 @@ export const deleteContact = createAsyncThunk(
   async (contactId, thunkAPI) => {
     try {
       const response = await axios.delete(`/contacts/${contactId}`);
+      toast.info(`Contact successfully removed!`, {
+        position: toast.POSITION.TOP_RIGHT,
+        theme: 'colored',
+        pauseOnHover: true,
+      });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ id, name, number }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/contacts/${id}`, {
+        name,
+        number,
+      });
+      toast.info(`Contact details edited successfully!`, {
+        position: toast.POSITION.TOP_RIGHT,
+        theme: 'colored',
+        pauseOnHover: true,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

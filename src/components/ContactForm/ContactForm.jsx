@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
+import { motion } from 'framer-motion';
 import { TbUserPlus } from 'react-icons/tb';
 
 import { addContact } from 'redux/contacts/contactsOperations';
@@ -33,7 +34,6 @@ export default function ContactForm() {
         return;
       }
     }
-    console.log({ name, number });
     dispatch(addContact({ name, number }));
 
     reset();
@@ -46,45 +46,50 @@ export default function ContactForm() {
 
   return (
     <FormWrap>
-      <Title text={'Create new contact'} size={'25px'} mb={'20px'} />
-      <Form onSubmit={handleSubmit}>
-        <InputWrap>
-          <TbUserPlus />
-          <Input
-            placeholder="Enter contact name"
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            onChange={e => {
-              setName(e.currentTarget.value);
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7 }}
+      >
+        <Title text={'Create new contact'} size={'25px'} mb={'20px'} />
+        <Form onSubmit={handleSubmit}>
+          <InputWrap>
+            <TbUserPlus />
+            <Input
+              placeholder="Enter contact name"
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              onChange={e => {
+                setName(e.currentTarget.value);
+              }}
+              value={name}
+              required
+            />
+          </InputWrap>
+
+          <NumberInput
+            defaultCountry="UA"
+            onChange={value => {
+              if (!value) {
+                return;
+              }
+              setNumber(value);
             }}
-            value={name}
+            region="Europe"
+            title="Number"
+            type="tel"
+            name="number"
+            international
+            maxLength="16"
+            value={number}
             required
           />
-        </InputWrap>
 
-        <NumberInput
-          defaultCountry="UA"
-          onChange={value => {
-            if (!value) {
-              return;
-            }
-            console.log(value);
-            setNumber(value);
-          }}
-          region="Europe"
-          title="Number"
-          type="tel"
-          name="number"
-          international
-          maxLength="16"
-          value={number}
-          required
-        />
-
-        <Button type="submit" text={'Add contact'} />
-      </Form>
+          <Button type="submit" text={'Add contact'} />
+        </Form>
+      </motion.div>
     </FormWrap>
   );
 }

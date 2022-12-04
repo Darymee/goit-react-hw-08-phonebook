@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
 
 import ContactForm from 'components/ContactForm/ContactForm';
-import { ContactsList } from 'components/ContactsList/ContactsList';
+import { ContactBook } from 'components/ContactBook/ContactBook';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-export const Contacts = () => {
+const Contacts = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
@@ -21,7 +21,9 @@ export const Contacts = () => {
   return (
     <>
       <ContactForm />
-      <ContactsList />
+      <ContactBook />
     </>
   );
 };
+
+export default Contacts;

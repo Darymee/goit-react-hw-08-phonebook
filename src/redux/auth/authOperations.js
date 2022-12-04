@@ -13,6 +13,8 @@ const token = {
   },
 };
 
+// Registration
+
 export const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
@@ -49,6 +51,8 @@ export const register = createAsyncThunk('auth/register', async credentials => {
   }
 });
 
+// Log In
+
 export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/users/login', credentials);
@@ -79,16 +83,17 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
   }
 });
 
+// Log Out
+
 export const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    const { data } = await axios.post('/users/logout');
+    await axios.post('/users/logout');
     token.unset();
     toast.info(`See you again!`, {
       position: toast.POSITION.TOP_RIGHT,
       theme: 'colored',
       pauseOnHover: true,
     });
-    return data;
   } catch (error) {
     const errorStatus = error.response.status;
 
@@ -114,6 +119,8 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
   }
 });
 
+// Fetch Current User
+
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
@@ -121,7 +128,7 @@ export const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (!persistedToken) {
-      return thunkAPI.rejectWithValue();
+      return thunkAPI.rejectWithValue('No valid token');
     }
     token.set(persistedToken);
     try {
