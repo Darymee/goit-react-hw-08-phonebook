@@ -6,7 +6,7 @@ import {
   selectIsLoading,
 } from 'redux/contacts/contactsSelectors';
 
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/UI/Loader';
 import { ContactsList } from 'components/ContactsList/ContactsList.jsx';
 import { ModalEdit } from 'components/ModalEdit/ModalEdit.jsx';
 import { Message } from 'components/UI/Message/Message.jsx';

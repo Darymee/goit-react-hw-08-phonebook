@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { AppBar } from 'components/AppBar/AppBar';
-import { Loader } from 'components/Loader';
+import { Loader } from 'components/UI/Loader';
 
 import { PhonebookWrap } from './Layout.styled';
 

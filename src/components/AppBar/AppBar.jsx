@@ -12,34 +12,24 @@ import { Header } from './AppBar.styled';
 
 export const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const [isOpen, setisOpen] = useLocalStorage('sideBarWidth', false);
+  const [isOpen, setIsOpen] = useLocalStorage('sideBarWidth', false);
 
-  const toogleBar = () => {
-    setisOpen(!isOpen);
-
-    return;
-  };
+  const toogleBar = () => setIsOpen(!isOpen);
 
   return (
-    <>
-      <Header
-        animate={{
-          width: isOpen ? '280px' : '90px',
-          padding: isOpen ? '10px 14px' : '10px 10px',
-          transition: {
-            duration: 0.5,
-            type: 'spring',
-            damping: 10,
-          },
-        }}
-      >
-        <Navigation isOpen={isOpen} toggleBar={toogleBar} />
-        {isLoggedIn ? (
-          <UserMenu isOpen={isOpen} />
-        ) : (
-          <AuthNav isOpen={isOpen} />
-        )}
-      </Header>
-    </>
+    <Header
+      animate={{
+        width: isOpen ? '280px' : '90px',
+        padding: isOpen ? '10px 14px' : '10px 10px',
+        transition: {
+          duration: 0.5,
+          type: 'spring',
+          damping: 10,
+        },
+      }}
+    >
+      <Navigation isOpen={isOpen} toggleBar={toogleBar} />
+      {isLoggedIn ? <UserMenu isOpen={isOpen} /> : <AuthNav isOpen={isOpen} />}
+    </Header>
   );
 };

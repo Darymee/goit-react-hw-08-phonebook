@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { toast } from 'react-toastify';
-
 import axios from 'axios';
+
+import { toast } from 'react-toastify';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',

@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { selectIsRefreshing } from 'redux/auth/authSelectors';
 
-import { PrivateRoute } from 'components/PrivateRoute';
-import { RestrictedRoute } from 'components/RestrictedRoute';
-import { Loader } from 'components/Loader';
+import { PrivateRoute } from 'routes/PrivateRoute';
+import { RestrictedRoute } from 'routes/RestrictedRoute';
+import { Loader } from 'components/UI/Loader';
 
 const Layout = lazy(() => import('components/Layout/Layout'));
 const Home = lazy(() => import('pages/Home/Home'));

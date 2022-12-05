@@ -1,15 +1,10 @@
 import PropTypes from 'prop-types';
 
-import { TbUserPlus, TbLogin } from 'react-icons/tb';
+import { navItems } from 'constance/navItems';
 
 import { NavItem } from 'components/NavItem/NavItem';
 
 import { NavMenu } from './AuthNav.styled';
-
-const navItems = [
-  { href: 'register', text: 'Sign Up', icon: TbUserPlus },
-  { href: 'login', text: 'Sign In', icon: TbLogin },
-];
 
 export const AuthNav = ({ isOpen }) => {
   return (
