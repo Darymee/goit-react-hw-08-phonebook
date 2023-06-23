@@ -114,11 +114,23 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('No valid token');
     }
     token.set(persistedToken);
+
     try {
       const { data } = await axios.get('/users/current');
 
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        token.unset();
+        toast.warning('You are not authorize, please login', {
+          position: toast.POSITION.TOP_RIGHT,
+          theme: 'colored',
+          pauseOnHover: true,
+        });
+        await axios.post('/users/logout');
+        return;
+      }
+
       toast.error('Something is wrong, please try again', {
         position: toast.POSITION.TOP_RIGHT,
         theme: 'colored',
