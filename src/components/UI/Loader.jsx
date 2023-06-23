@@ -15,8 +15,6 @@ export const Loader = () => (
       secondaryColor="grey"
       radius="12.5"
       ariaLabel="mutating-dots-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
       visible={true}
     />
   </div>

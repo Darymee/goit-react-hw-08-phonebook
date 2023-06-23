@@ -7,17 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from 'components/AppBar/AppBar';
 import { Loader } from 'components/UI/Loader';
 
-import { PhonebookWrap } from './Layout.styled';
+import { PhoneBookWrap } from './Layout.styled';
 
 const Layout = () => {
   return (
-    <PhonebookWrap>
+    <PhoneBookWrap>
       <AppBar />
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
       <ToastContainer limit={3} />
-    </PhonebookWrap>
+    </PhoneBookWrap>
   );
 };
 export default Layout;

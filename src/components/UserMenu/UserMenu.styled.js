@@ -4,20 +4,15 @@ import { Avatar } from '@mui/material';
 export const UserProfile = styled.div`
   margin-top: 20px;
   display: flex;
-  flex-direction: ${p => {
-    if (!p.isOpen) {
-      return 'column';
-    }
-    return 'row';
-  }};
-
+  flex-direction: ${p => (!p.isOpen || p.isMobile ? 'column' : 'row')};
+  gap: ${p => (p.isMobile ? '20px' : null)};
   align-items: center;
 `;
 
 export const CustomAvatar = styled(Avatar)`
   & svg {
-    width: 35px;
-    height: 35px;
+    height: ${p => (p.isMobile ? '40px' : '35px')};
+    width: ${p => (p.isMobile ? '40px' : '35px')};
   }
 `;
 
@@ -28,28 +23,20 @@ export const WelcomeText = styled.p`
   color: white;
 
   text-align: center;
-  margin-top: ${p => {
-    if (!p.isOpen) {
-      return '5px';
-    }
-    return '0';
-  }};
-  margin-left: ${p => {
-    if (!p.isOpen) {
-      return '0';
-    }
-    return '10px';
-  }};
+  margin-top: ${p => (p.isOpen ? '5px' : null)};
+  margin-left: ${p => (p.isOpen ? null : '10px')};
 `;
 
 export const UserName = styled.span`
-  color: rgba(0, 0, 0, 0.6);
+  color: ${p => (p.isMobile ? '#fff' : 'rgba(0, 0, 0, 0.6)')};
 `;
 
 export const BtnLogOut = styled.button`
   cursor: pointer;
 
   background-color: transparent;
+  color: #fff;
+  text-decoration: none;
   padding: 10px;
   outline: none;
   border-radius: 5px;
@@ -57,34 +44,18 @@ export const BtnLogOut = styled.button`
   display: flex;
   align-items: center;
   transition: background-color 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  margin-top: ${p => {
-    if (!p.isOpen) {
-      return '5px';
-    }
-    return '0';
-  }};
-  margin-left: ${p => {
-    if (!p.isOpen) {
-      return '0';
-    }
-    return '10px';
-  }};
+  margin-top: ${p => (p.isOpen ? '5px' : null)};
+  margin-left: ${p => (p.isOpen ? null : '10px')};
 
   & svg {
-    width: ${p => {
-      if (p.isOpen) {
-        return '22px';
-      }
-      return '35px';
-    }};
-    height: ${p => {
-      if (p.isOpen) {
-        return '22px';
-      }
-      return '35px';
-    }};
-
+    width: ${p => (p.isOpen ? '22px' : '35px')};
+    height: ${p => (p.isOpen ? '22px' : '35px')};
     stroke: white;
+  }
+
+  & span {
+    margin-left: 10px;
+    font-size: 20px;
   }
 
   &:hover,

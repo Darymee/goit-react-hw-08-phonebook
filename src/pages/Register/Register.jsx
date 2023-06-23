@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useMedia } from 'react-use';
+
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 
@@ -16,10 +18,13 @@ import { Wrapper } from 'components/UI/Wrapper/Wrapper';
 import { Form, Label, Input, InputWrapp } from './Register.styled';
 
 const Register = () => {
+  const isMobile = useMedia('(max-width: 768px)');
+
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  console.log(isMobile);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -54,8 +59,12 @@ const Register = () => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7 }}
+      style={{ boxSizing: 'border-box', padding: '0 10px' }}
     >
-      <Wrapper width={'380px'} heigth={'400px'}>
+      <Wrapper
+        width={isMobile ? null : '380px'}
+        height={isMobile ? null : '400px'}
+      >
         <Title text={'Registration form'} size={'25px'} mb={'30px'} />
         <Form onSubmit={handleSubmit}>
           <InputWrapp>

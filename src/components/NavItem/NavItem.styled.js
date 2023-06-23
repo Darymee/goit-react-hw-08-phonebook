@@ -7,26 +7,9 @@ export const NavLi = styled.li`
 
   & svg {
     stroke: #fff;
-
-    margin: ${p => {
-      if (p.status) {
-        return '0 10px 0 0';
-      }
-      return '0 auto';
-    }};
-
-    width: ${p => {
-      if (p.status) {
-        return '22px';
-      }
-      return '35px';
-    }};
-    height: ${p => {
-      if (p.status) {
-        return '22px';
-      }
-      return '35px';
-    }};
+    margin: ${p => (p.status ? '0 10px 0 0' : '0 auto')};
+    width: ${p => (p.status ? '22px' : '35px')};
+    height: ${p => (p.status ? '22px' : '35px')};
   }
 `;
 

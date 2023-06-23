@@ -2,10 +2,16 @@ import PropTypes from 'prop-types';
 
 import { SideBarLink, NavLi } from './NavItem.styled';
 
-export const NavItem = ({ href, text, Icon, isOpen }) => {
+export const NavItem = ({ href, text, Icon, isOpen, onMobMenuClose }) => {
   return (
     <NavLi status={isOpen}>
-      <SideBarLink to={href} end>
+      <SideBarLink
+        to={href}
+        end
+        onClick={() =>
+          onMobMenuClose(prevState => (prevState ? !prevState : false))
+        }
+      >
         <Icon />
         {isOpen && <span>{text}</span>}
       </SideBarLink>

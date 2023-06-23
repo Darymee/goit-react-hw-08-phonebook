@@ -1,28 +1,15 @@
 import styled from 'styled-components';
 
 export const Wrapp = styled.div`
+  box-sizing: border-box;
   width: ${p => p.width};
   height: ${p => p.height};
 
-  margin: ${p => {
-    if (!p.mr) {
-      return '150px auto';
-    }
-    return p.mr;
-  }};
-  padding: ${p => {
-    if (!p.pd) {
-      return '40px';
-    }
-    return p.pd;
-  }};
+  margin: ${p => (p.mr ? p.mr : '150px auto')};
 
-  min-width: ${p => {
-    if (!p.minw) {
-      return;
-    }
-    return p.minw;
-  }};
+  padding: ${p => (p.pd ? p.pd : '40px')};
+
+  min-width: ${p => (p.minw ? p.minw : null)};
 
   background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 1px 7px 38px -11px rgba(0, 0, 0, 0.84);

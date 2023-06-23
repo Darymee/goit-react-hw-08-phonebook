@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useMedia } from 'react-use';
 
 import { TbTrash, TbPencil, TbUser } from 'react-icons/tb';
 
@@ -8,6 +9,7 @@ import { TableCell, BtnTool } from './ContactListItem.styled';
 
 export const ContactListItem = ({ name, number, id, toggleModal, getInfo }) => {
   const dispatch = useDispatch();
+  const isMobile = useMedia('(max-width: 768px)');
   const onDelete = () => dispatch(deleteContact(id));
 
   const sendInfo = () => {
@@ -18,9 +20,12 @@ export const ContactListItem = ({ name, number, id, toggleModal, getInfo }) => {
 
   return (
     <tr>
-      <TableCell>
-        <TbUser />
-      </TableCell>
+      {isMobile ? null : (
+        <TableCell>
+          <TbUser />
+        </TableCell>
+      )}
+
       <TableCell>{name}</TableCell>
       <TableCell>{number}</TableCell>
       <TableCell>

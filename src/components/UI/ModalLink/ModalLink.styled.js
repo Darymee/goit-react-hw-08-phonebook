@@ -9,7 +9,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 700;
-  font-size: 20px;
+  font-size: ${p => p.size};
   padding: 15px 20px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.6);

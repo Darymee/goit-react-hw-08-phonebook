@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useMedia } from 'react-use';
+
 import { TbLogout, TbUserCircle } from 'react-icons/tb';
 
 import { logOut } from 'redux/auth/authOperations';
@@ -17,26 +19,38 @@ import {
 
 export const UserMenu = ({ isOpen }) => {
   const dispatch = useDispatch();
+  const isMobile = useMedia('(max-width: 768px)');
 
   const name = useSelector(selectUsername);
 
+  const cutName = userName =>
+    userName.length > 10 ? userName.slice(0, 6) + '...' : userName;
+
   return (
-    <UserProfile isOpen={isOpen}>
+    <UserProfile isOpen={isOpen} isMobile={isMobile}>
       <CustomAvatar
-        sx={{ bgcolor: 'rgba(0, 0, 0, 0.6)', width: 45, height: 45 }}
+        sx={{
+          bgcolor: 'rgba(0, 0, 0, 0.6)',
+          width: isMobile ? 50 : 45,
+          height: isMobile ? 50 : 45,
+        }}
+        isMobile={isMobile}
       >
         <TbUserCircle />
       </CustomAvatar>
 
       <WelcomeText isOpen={isOpen}>
-        Welcome, <UserName>{name}</UserName>
+        Welcome,{' '}
+        <UserName isMobile={isMobile}>{isOpen ? name : cutName(name)}</UserName>
       </WelcomeText>
       <BtnLogOut
         type="button"
         isOpen={isOpen}
+        isMobile={isMobile}
         onClick={() => dispatch(logOut())}
       >
         <TbLogout />
+        {isMobile && <span> Log out</span>}
       </BtnLogOut>
     </UserProfile>
   );

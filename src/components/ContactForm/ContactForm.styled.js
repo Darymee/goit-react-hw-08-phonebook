@@ -25,6 +25,7 @@ export const InputWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   & > svg {
     margin-right: 18px;
 
@@ -51,9 +52,11 @@ export const Input = styled.input`
 
   width: 100%;
   height: 30px;
+
   border-radius: 5px;
+
   &::placeholder {
-    color: white;
+    color: #fff;
   }
 
   transition: background-color 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);

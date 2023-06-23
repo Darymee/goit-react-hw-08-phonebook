@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMedia } from 'react-use';
 
 import { useDispatch } from 'react-redux';
 
@@ -15,6 +16,7 @@ import { Wrapper } from 'components/UI/Wrapper/Wrapper';
 import { Form, Input, InputWrapp, Label } from './LogIn.styled';
 
 const LogIn = () => {
+  const isMobile = useMedia('(max-width: 768px)');
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,8 +43,12 @@ const LogIn = () => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.7 }}
+      style={{ boxSizing: 'border-box', padding: '0 10px' }}
     >
-      <Wrapper width={'380px'} heigth={'380px'}>
+      <Wrapper
+        width={isMobile ? null : '380px'}
+        height={isMobile ? null : '400px'}
+      >
         <Title
           text={'Enter your email and password'}
           size={'25px'}

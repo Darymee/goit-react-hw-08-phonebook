@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PhonebookWrap = styled.div`
+export const PhoneBookWrap = styled.div`
   display: grid;
   grid-template-columns: auto;
 `;

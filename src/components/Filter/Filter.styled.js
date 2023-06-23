@@ -13,7 +13,7 @@ export const FilterInput = styled.input`
   width: 100%;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.3);
-  color: white;
+  color: #fff;
 
   border-radius: 5px;
 

@@ -1,19 +1,9 @@
 import styled from 'styled-components';
 
 export const MainTitle = styled.h1`
-  font-size: ${p => {
-    if (!p.size) {
-      return '35px';
-    }
-    return p.size;
-  }};
+  font-size: ${p => (p.size ? p.size : '35px')};
 
-  margin-bottom: ${p => {
-    if (!p.mb) {
-      return '35px';
-    }
-    return p.mb;
-  }};
+  margin-bottom: ${p => (p.mb ? p.mb : '35px')};
   text-align: center;
   color: #fff;
 `;

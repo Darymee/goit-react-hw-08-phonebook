@@ -1,11 +1,18 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
+export const HomeWrapper = styled(motion.div)`
+  padding: ${p => (p.isMobile ? '0 10px' : null)};
+`;
+
 export const Wrapper = styled.div`
-  width: 700px;
+  max-width: 500px;
   height: 400px;
 
   margin: 150px auto;
   padding: 20px;
+
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
@@ -15,12 +22,18 @@ export const Wrapper = styled.div`
 
   background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 1px 7px 38px -11px rgba(0, 0, 0, 0.84);
+
+  @media (min-width: 1280px) {
+    width: 700px;
+    max-width: 700px;
+    height: 400px;
+  }
 `;
 
 export const TitleLink = styled.button`
   font-family: inherit;
 
-  font-size: 30px;
+  font-size: ${p => p.size};
   font-weight: 700;
 
   display: block;
