@@ -17,7 +17,7 @@ import {
   BtnLogOut,
 } from './UserMenu.styled';
 
-export const UserMenu = ({ isOpen }) => {
+export const UserMenu = ({ isOpen, setToggleMobNav }) => {
   const dispatch = useDispatch();
   const isMobile = useMedia('(max-width: 768px)');
 
@@ -25,6 +25,14 @@ export const UserMenu = ({ isOpen }) => {
 
   const cutName = userName =>
     userName.length > 10 ? userName.slice(0, 6) + '...' : userName;
+
+  const onLogout = () => {
+    setToggleMobNav(prevState => (prevState ? !prevState : false));
+
+    dispatch(logOut());
+  };
+
+  console.log(setToggleMobNav);
 
   return (
     <UserProfile isOpen={isOpen} isMobile={isMobile}>
@@ -47,7 +55,7 @@ export const UserMenu = ({ isOpen }) => {
         type="button"
         isOpen={isOpen}
         isMobile={isMobile}
-        onClick={() => dispatch(logOut())}
+        onClick={() => onLogout()}
       >
         <TbLogout />
         {isMobile && <span> Log out</span>}

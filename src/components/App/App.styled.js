@@ -7,7 +7,7 @@ export const ContactWrap = styled.div`
   border: 2px solid black;
   padding: 30px;
 
-  background-color: white;
+  background-color: #fff;
   box-shadow: 10px 10px 53px -22px rgba(0, 0, 0, 0.75);
 
   margin-bottom: 30px;

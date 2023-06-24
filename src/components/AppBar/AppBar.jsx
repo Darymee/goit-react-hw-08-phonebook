@@ -34,7 +34,7 @@ export const AppBar = () => {
           {toggleMobNav && (
             <BurgerMenu>
               {isLoggedIn ? (
-                <UserMenu isOpen={true} />
+                <UserMenu isOpen={true} setToggleMobNav={setToggleMobNav} />
               ) : (
                 <AuthNav isOpen={true} />
               )}

@@ -45,10 +45,7 @@ const LogIn = () => {
       transition={{ duration: 0.7 }}
       style={{ boxSizing: 'border-box', padding: '0 10px' }}
     >
-      <Wrapper
-        width={isMobile ? null : '380px'}
-        height={isMobile ? null : '400px'}
-      >
+      <Wrapper width={'380px'} height={'400px'} pd={isMobile ? '20px' : null}>
         <Title
           text={'Enter your email and password'}
           size={'25px'}

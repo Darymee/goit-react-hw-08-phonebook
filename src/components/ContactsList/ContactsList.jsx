@@ -20,7 +20,12 @@ export const ContactsList = ({ toggleModal, getInfo }) => {
   const isMobile = useMedia('(max-width: 768px)');
 
   return (
-    <Wrapper mr={'40px auto'} pd={'20px'} minw={isMobile ? null : '480px'}>
+    <Wrapper
+      mr="40px auto"
+      pd="20px"
+      minw={isMobile ? null : '480px'}
+      maxw={isMobile ? '480px' : null}
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -31,15 +36,15 @@ export const ContactsList = ({ toggleModal, getInfo }) => {
         {!filteredContacts.length ? (
           <Message text={'No results'} />
         ) : (
-          <TableWrapper>
+          <TableWrapper isMobile={isMobile}>
             <Table>
               <thead>
                 <tr>
                   {isMobile ? null : <TableHead></TableHead>}
-                  <TableHead>Name</TableHead>
-                  <TableHead>Number</TableHead>
-                  <TableHead>Edit</TableHead>
-                  <TableHead>Remove</TableHead>
+                  <TableHead isMobile={isMobile}>Name</TableHead>
+                  <TableHead isMobile={isMobile}>Number</TableHead>
+                  <TableHead isMobile={isMobile}>Edit</TableHead>
+                  <TableHead isMobile={isMobile}>Remove</TableHead>
                 </tr>
               </thead>
               <tbody>

@@ -7,7 +7,7 @@ export const Title = ({ text, size, mb }) => {
   const isMobile = useMedia('(max-width: 768px)');
 
   return (
-    <MainTitle size={isMobile ? '30px' : size} mb={mb}>
+    <MainTitle size={isMobile ? '28px' : size} mb={mb}>
       {text}
     </MainTitle>
   );

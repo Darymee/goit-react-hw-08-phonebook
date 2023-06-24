@@ -13,7 +13,7 @@ export const Table = styled.table`
 
 export const TableHead = styled.th`
   color: white;
-  font-size: 20px;
+  font-size: ${p => (p.isMobile ? '16px' : '18px')};
   text-align: left;
   padding-bottom: 15px;
   min-width: 20px;

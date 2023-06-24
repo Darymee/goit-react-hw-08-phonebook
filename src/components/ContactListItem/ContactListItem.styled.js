@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const TableCell = styled.td`
   color: white;
-  font-size: 18px;
+  font-size: ${p => (p.isMobile ? '14px' : '18px')};
   font-weight: 600;
 
   padding-bottom: 15px;
   padding-right: 15px;
+
   & svg {
-    width: 25px;
-    height: 25px;
+    width: ${p => (p.isMobile ? '22px' : '25px')};
+    height: ${p => (p.isMobile ? '22px' : '25px')};
     stroke: white;
   }
 `;
@@ -35,8 +36,8 @@ export const BtnTool = styled.button`
   }
 
   & svg {
-    width: 25px;
-    height: 25px;
+    width: ${p => (p.isMobile ? '22px' : '25px')};
+    height: ${p => (p.isMobile ? '22px' : '25px')};
     stroke: white;
   }
 `;

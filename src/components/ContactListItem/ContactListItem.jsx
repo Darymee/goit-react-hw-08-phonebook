@@ -21,20 +21,20 @@ export const ContactListItem = ({ name, number, id, toggleModal, getInfo }) => {
   return (
     <tr>
       {isMobile ? null : (
-        <TableCell>
+        <TableCell isMobile={isMobile}>
           <TbUser />
         </TableCell>
       )}
 
-      <TableCell>{name}</TableCell>
-      <TableCell>{number}</TableCell>
-      <TableCell>
-        <BtnTool type="button" onClick={sendInfo}>
+      <TableCell isMobile={isMobile}>{name}</TableCell>
+      <TableCell isMobile={isMobile}>{number}</TableCell>
+      <TableCell isMobile={isMobile}>
+        <BtnTool type="button" onClick={sendInfo} isMobile={isMobile}>
           <TbPencil />
         </BtnTool>
       </TableCell>
-      <TableCell>
-        <BtnTool type="button" onClick={onDelete}>
+      <TableCell isMobile={isMobile}>
+        <BtnTool type="button" onClick={onDelete} isMobile={isMobile}>
           <TbTrash />
         </BtnTool>
       </TableCell>
